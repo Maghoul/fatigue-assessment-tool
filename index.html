@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatigue Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
+</head>
+<body>    
+    <div class="container">
+        <h1>Fatigue Assessment</h1> 
+        <div class="info"><p>This tool combines the Karolinska Sleepiness Scale (KSS) and a Fatigue Risk Index (FRI) calculator to aid in fatigue assessment.</p>
+        <p class="emphasis"><strong>Note:</strong> This product is <strong>NEITHER</strong> produced <strong>NOR</strong> endorsed by the Fatigue Risk Management Committee (FRMC).</p>
+        <p class="emphasis"><strong>Note:</strong> This is an educational resource. Only the individual pilot can ultimately determine their fatigue level.</p>
+        <p class="center">Fill out the form below to get your fatigue score.</p>
+        </div>    
+        <form id="fatigue-form">
+            <div class="form-row">
+                <label for="kss-rating">Current level of sleepiness: </label>
+                <select id="kss-rating" name="kss-rating">
+                  <option value="1">Extremely alert</option>
+                  <option value="2">Very alert</option>
+                  <option value="3">Alert</option>  
+                  <option value="4">Rather alert</option>
+                  <option value="5" selected>Neither alert nor sleepy</option>
+                  <option value="6">Somewhat sleepy</option>
+                  <option value="7">Sleepy, but no effort to keep awake</option>
+                  <option value="8">Sleepy, some effort to keep awake</option>
+                  <option value="9">Sleepy, great effort to keep awake, fighting sleep</option>
+                </select>
+            </div>      
+            <div class="form-row">
+                <label for="24-hr-sleep">Sleep in prior 24 hours?</label>
+                <input type="number" id="24-hr-sleep" name="24-hr-sleep" min="0" max="24" step="0.1" value="7">
+            </div>
+            <div class="form-row">
+                <label for="48-hr-sleep">Sleep in prior 48 hours?</label>
+                <input type="number" id="48-hr-sleep" name="48-hr-sleep" min="0" max="48" step="0.1" value="15">
+            </div>
+            <div class="form-row">
+                <label for="hours-awake">Hours awake at end of duty period?</label>
+                <input type="number" id="hours-awake" name="hours-awake" min="0" max="24" step="0.1" value="16">
+            </div>
+            <div class="form-row">
+                <button type="submit">Submit</button>
+                <button type="reset" class="reset-btn hidden">Reset</button>
+            </div>
+        </form>
+        <div id="result"></div>
+        <div id="resources"></div>
+        <div class="footer">
+            <p>© 2025 Fatigue Assessment Tool</p>
+            <p>Developed by Rick G.</p> 
+        </div>
+    </div>
+    <script>
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
