@@ -25,15 +25,32 @@ const CACHE_NAME = 'fatigue-tool-cache-v1';
          caches.match(event.request)
            .then(cachedResponse => {
              const networkFetch = fetch(event.request).then(networkResponse => {
-               // Clone the response immediately to preserve the body
-               const responseClone = networkResponse.ok && event.request.method === 'GET' ? networkResponse.clone() : null;
-               if (responseClone) {
-                 caches.open(CACHE_NAME).then(cache => {
-                   cache.put(event.request, responseClone);
+               const isCacheable = networkResponse.ok &&
+                                   event.request.method === 'GET' &&
+                                   event.request.url.startsWith('http');
+               if (isCacheable) {
+                 // Clone twice: one for validation, one for caching
+                 const validationClone = networkResponse.clone();
+                 const cacheClone = networkResponse.clone();
+                 return validationClone.text().then(content => {
+                   console.log(`Caching ${event.request.url}, status: ${networkResponse.status}, content length: ${content.length}`);
+                   if (content.length > 0) {
+                     caches.open(CACHE_NAME).then(cache => {
+                       cache.put(event.request, cacheClone).catch(error => {
+                         console.error(`Failed to cache ${event.request.url}:`, error);
+                       });
+                     });
+                   } else {
+                     console.warn(`Empty response for ${event.request.url}, not caching`);
+                   }
+                   return networkResponse;
                  });
+               } else {
+                 console.log(`Skipping cache for ${event.request.url}, cacheable: ${isCacheable}`);
+                 return networkResponse;
                }
-               return networkResponse;
-             }).catch(() => {
+             }).catch(error => {
+               console.error(`Fetch failed for ${event.request.url}:`, error);
                if (cachedResponse) {
                  return cachedResponse;
                }
