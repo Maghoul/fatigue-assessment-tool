@@ -23,10 +23,14 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        return response || fetch(event.request).catch(() => {
-          if (event.request.mode === 'navigate') {
-            return caches.match('/fatigue-assessment-tool/offline.html');
-          }
+        // Return cached response if available
+        if (response) {
+          return response;
+        }
+        // Attempt to fetch from network
+        return fetch(event.request).catch(() => {
+          // If fetch fails (e.g., offline), return offline.html for all requests
+          return caches.match('/fatigue-assessment-tool/offline.html');
         });
       })
   );
