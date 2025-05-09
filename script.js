@@ -172,9 +172,19 @@ const colorKSS = (num) => {
     colorKSS(kssValue);
 });
 
-hours24.addEventListener("focus", () => {
-    this.select(); // Select the input value when focused
-});
+hours24.addEventListener("focus", function() {
+         this.select(); // Select the input value when focused
+     });
+
+hours48.addEventListener("focus", function() {
+         this.select(); // Select the input value when focused
+     });
+
+hoursAwake.addEventListener("focus", function() {
+         this.select(); // Select the input value when focused
+     });
+
+
 
 hoursAwake.addEventListener("input", (e) => {
     const hoursValue = parseFloat(e.target.value);
