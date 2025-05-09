@@ -6,6 +6,9 @@ const fatigueForm = document.getElementById("fatigue-form");
 const result = document.getElementById("result");
 const resources = document.getElementById("resources");
 const schedURL = "https://scheduling.fdx.alpa.org/fatigue";
+const alcoholURL = "https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod3/08.html";
+const kssURL = "https://skybrary.aero/articles/karolinska-sleepiness-scale-kss";
+const friURL = "https://www.faa.gov/about/initiatives/maintenance_hf/fatigue/multimedia";
 
 const overallFatigue = {
     0: { condition: 'No Fatigue', strategy: 'continue monitoring for fatigue', color: 'var(--vibrant-green)' },
@@ -162,9 +165,9 @@ const colorKSS = (num) => {
         combinedFatigue = 3; // Severe Fatigue
     }
 
-    let overallFatigue = [adjustedFRI, adjustedKSS, combinedFatigue]; // Create an array to hold the adjusted values
+    let assessedFatigue = [adjustedFRI, adjustedKSS, combinedFatigue]; // Create an array to hold the adjusted values
 
-    return overallFatigue; // Return the overall fatigue ID
+    return assessedFatigue; // Return the overall fatigue ID
   }
 
   kssRating.addEventListener("change", (e) => {
@@ -211,8 +214,6 @@ fatigueForm.addEventListener("submit", (e) => {
         formResults.remove(); // Remove previous results if any
     }
 
-    //document.querySelector(".form-results").innerHTML = ""; // Remove previous results if any
-
     if (isNaN(hoursAwakeValue) || isNaN(hours48Value) || isNaN(hours24Value)) {
         alert("Please enter valid numbers for all fields.");
         return;
@@ -246,12 +247,34 @@ fatigueForm.addEventListener("submit", (e) => {
     result.innerHTML = `<div class="final-results"><p>Your answers indicate <span style="color: ${overallFatigue[fatigueAssessment[2]].color}">${overallFatigue[fatigueAssessment[2]].condition}.</span>
    You should ${overallFatigue[fatigueAssessment[2]].strategy}.</p>`;
      
-    resources.innerHTML = `<p>For more information, please visit <a href="${schedURL}" target="_blank">ALPA Scheduling</a>.</p>`; // Add a link to the ALPA Scheduling page
+   // Add resources div
+    const resourcesDiv = document.createElement("div");
+    resourcesDiv.classList.add("resources");
+    const title = document.createElement("h3");
+     title.innerText = "Resources";
+     resourcesDiv.appendChild(title);
+    const alpaLink = document.createElement("a");
+      alpaLink.href = schedURL;
+      alpaLink.target = "_blank";
+      alpaLink.innerText = "ALPA Scheduling Committee (Fatigue)";
+    resourcesDiv.appendChild(alpaLink);
+    const friLink = document.createElement("a");
+      friLink.href = friURL;
+      friLink.target = "_blank";    
+      friLink.innerText = "FAA Fatigue Risk Index";
+    resourcesDiv.appendChild(friLink);
+    const alcoholLink = document.createElement("a");
+        alcoholLink.href = alcoholURL;  
+        alcoholLink.target = "_blank";
+        alcoholLink.innerText = "CDC: BAC vs Fatigue";
+    resourcesDiv.appendChild(alcoholLink);
+    const kssLink = document.createElement("a");
+        kssLink.href = kssURL;
+        kssLink.target = "_blank";  
+        kssLink.innerText = "Karolinska Sleepiness Scale";
+    resourcesDiv.appendChild(kssLink);
     
-    console.log("FRI: " + fatigueRiskIndex);
-    console.log("KSS: " + kssRatingValue);
-    console.log("Fatigue Assessment: " + fatigueAssessment);
-    
+    result.appendChild(resourcesDiv);
 });
 
 fatigueForm.addEventListener("reset", (e) => {
@@ -261,7 +284,6 @@ fatigueForm.addEventListener("reset", (e) => {
     const formResults = document.querySelector(".form-results");
     if (formResults) formResults.remove();
     result.innerText = ""; // Clear the result text
-    resources.innerText = ""; // Clear the resources text
     kssRating.style.backgroundColor = ""; // Reset background color
     kssRating.value = 5; // Reset input value
     hoursAwake.value = 16; // Reset input value

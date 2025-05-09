@@ -160,6 +160,16 @@ button {
     margin-top: 20px;
 }
 
+.resources {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--complementary-color);
+    color: var(--primary-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
 option {
     background-color: darkgray;
     color: #000000;

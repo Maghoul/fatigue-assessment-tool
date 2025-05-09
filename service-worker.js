@@ -13,7 +13,7 @@ const CACHE_NAME = 'fatigue-tool-cache-v1';
        event.waitUntil(
          caches.open(CACHE_NAME)
            .then(cache => {
-             console.log('Opened cache');
+             //console.log('Opened cache');
              return cache.addAll(urlsToCache);
            })
        );
@@ -33,7 +33,7 @@ const CACHE_NAME = 'fatigue-tool-cache-v1';
                  const validationClone = networkResponse.clone();
                  const cacheClone = networkResponse.clone();
                  return validationClone.text().then(content => {
-                   console.log(`Caching ${event.request.url}, status: ${networkResponse.status}, content length: ${content.length}`);
+                   //console.log(`Caching ${event.request.url}, status: ${networkResponse.status}, content length: ${content.length}`);
                    if (content.length > 0) {
                      caches.open(CACHE_NAME).then(cache => {
                        cache.put(event.request, cacheClone).catch(error => {
@@ -46,7 +46,7 @@ const CACHE_NAME = 'fatigue-tool-cache-v1';
                    return networkResponse;
                  });
                } else {
-                 console.log(`Skipping cache for ${event.request.url}, cacheable: ${isCacheable}`);
+                 //console.log(`Skipping cache for ${event.request.url}, cacheable: ${isCacheable}`);
                  return networkResponse;
                }
              }).catch(error => {
