@@ -130,6 +130,7 @@ button {
     background-repeat: no-repeat;
     background-position: right 10px center;
     font-size: 1.2rem;
+    color: #000000;
 }
 
 .form-row button {
