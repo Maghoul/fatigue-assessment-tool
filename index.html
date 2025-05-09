@@ -6,11 +6,11 @@
     <title>Fatigue Assessment</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/fatigue-assessment-tool/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/images/icon-192.png">
+    <link rel="apple-touch-icon" href="/fatigue-assessment-tool/images/icon-192.png">
 </head>
 <body>    
     <div class="container">
@@ -60,18 +60,17 @@
         </div>
     </div>
     <script>
-        // Register the service worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.error('Service Worker registration failed:', error);
-                    });
-            });
-        }
-    </script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/fatigue-assessment-tool/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    });
+  }
+</script>
 </body>
 </html>

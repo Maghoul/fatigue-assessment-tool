@@ -1,21 +1,21 @@
 {
-    "name": "Fatigue Assessment Tool",
-    "short_name": "Fatigue Tool",
-    "description": "A tool combining Karolinska Sleepiness Scale (KSS) and Fatigue Risk Index (FRI) for fatigue assessment",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#003052",
-    "theme_color": "#f5f6f7c5",
-    "icons": [
-      {
-        "src": "images/icon-192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "images/icon-512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
+  "name": "Fatigue Assessment Tool",
+  "short_name": "Fatigue Tool",
+  "description": "A tool combining Karolinska Sleepiness Scale (KSS) and Fatigue Risk Index (FRI) for fatigue assessment",
+  "start_url": "/fatigue-assessment-tool/index.html",
+  "display": "standalone",
+  "background_color": "#003052",
+  "theme_color": "#f5f6f7c5",
+  "icons": [
+    {
+      "src": "/fatigue-assessment-tool/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/fatigue-assessment-tool/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
