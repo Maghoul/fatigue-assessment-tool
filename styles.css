@@ -160,6 +160,10 @@ button {
     margin-top: 20px;
 }
 
+h1 {
+    color: hotpink;
+}
+
 option {
     background-color: darkgray;
     color: #000000;
