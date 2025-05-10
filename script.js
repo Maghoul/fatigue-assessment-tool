@@ -338,6 +338,7 @@
 
     fatigueForm.addEventListener("reset", (e) => {
       e.preventDefault(); // Prevent form submission
+      document.querySelector(".reset-btn").classList.add("hidden");
       kssRating.value = 6; // Reset input value
       colorKSS(kssRating.value); // Reset color
       hoursAwake.value = 16; // Reset input value
