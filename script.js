@@ -1,4 +1,4 @@
-const kssRating = document.getElementById("kss-rating");
+     const kssRating = document.getElementById("kss-rating");
      const hours24 = document.getElementById("24-hr-sleep");
      const hours48 = document.getElementById("48-hr-sleep");
      const hoursAwake = document.getElementById("hours-awake");
@@ -44,6 +44,7 @@ const kssRating = document.getElementById("kss-rating");
              kssRating.style.backgroundColor = "darkgray";
          }
      };
+     colorKSS(kssRating.value);
 
      const createModal = (message) => {
          const overlay = document.createElement("div");
@@ -283,19 +284,21 @@ const kssRating = document.getElementById("kss-rating");
          buttonContainer.classList.add("button-container");
          const resetBtn = document.createElement("button");
          resetBtn.classList.add("reset-btn");
-         resetBtn.innerText = "Reset";
+         resetBtn.innerText = "Return";
          resetBtn.addEventListener("click", () => {
              document.querySelector(".info").classList.remove("hidden");
              fatigueForm.classList.remove("hidden");
              const formResults = document.querySelector(".form-results");
              if (formResults) formResults.remove();
              if (result) result.innerHTML = "";
-             kssRating.style.backgroundColor = "";
-             kssRating.value = 5;
-             hoursAwake.value = 16;
-             hoursAwake.style.backgroundColor = "var(--primary-color)"
-             hours48.value = 15;
-             hours24.value = 7;
+             
+            // For now retain previous values
+            //kssRating.style.backgroundColor = "";
+            //  kssRating.value = 5;
+            //  hoursAwake.value = 16;
+            //  hoursAwake.style.backgroundColor = "var(--primary-color)"
+            //  hours48.value = 15;
+            //  hours24.value = 7;
          });
          buttonContainer.appendChild(resetBtn);
          div.appendChild(buttonContainer);
@@ -330,3 +333,18 @@ const kssRating = document.getElementById("kss-rating");
 
          result.appendChild(resourcesDiv);
      });
+
+    fatigueForm.addEventListener("reset", (e) => {
+      e.preventDefault(); // Prevent form submission
+      document.querySelector(".info").classList.remove("hidden"); // show the info section
+      //document.querySelector(".reset-btn").classList.add("hidden"); // hide the reset button
+      const formResults = document.querySelector(".form-results");
+      if (formResults) formResults.remove();
+      result.innerText = ""; // Clear the result text
+      kssRating.value = 6; // Reset input value
+      colorKSS(kssRating.value); // Reset color
+      hoursAwake.value = 16; // Reset input value
+      hoursAwake.style.backgroundColor = "var(--primary-color)"
+      hours48.value = 15; // Reset input value
+      hours24.value = 7; // Reset input value
+});
