@@ -30,6 +30,7 @@
      };
 
      const colorKSS = (num) => {
+        kssRating.style.color = "black";
          if (num >= 1 && num <= 2) {
              kssRating.style.backgroundColor = "var(--vibrant-green)";
          } else if (num >= 3 && num <= 4) {
@@ -40,6 +41,7 @@
              kssRating.style.backgroundColor = "var(--orange)";
          } else if (num >= 8 && num <= 9) {
              kssRating.style.backgroundColor = "var(--red)";
+             kssRating.style.color = "white";
          } else {
              kssRating.style.backgroundColor = "darkgray";
          }
@@ -256,7 +258,6 @@
          div.appendChild(graphsDiv);
          div.appendChild(document.createElement("hr"));
 
-
          const divFriP = document.createElement("p");
          divFriP.innerText = `FRI (Objective): ${strFRI} - `;
          const divFriSpan = document.createElement("span");
@@ -272,6 +273,22 @@
          divKssP.appendChild(divKssSpan);
          div.appendChild(divKssP);
          div.appendChild(document.createElement("hr"));
+         
+         
+         const levelsP = document.createElement("p");
+          const condition = overallFatigue[fatigueAssessment[2]].condition;
+          const conditionColor = overallFatigue[fatigueAssessment[2]].color;
+          const conditionWord = condition.replace(" Fatigue", "");
+          const levelsText = "Fatigue Levels: None - Mild - Moderate - Severe - Extreme";
+          const highlightedText = levelsText.replace(
+          conditionWord, `<span style="color: ${conditionColor}">${conditionWord}</span>`
+           );
+          levelsP.innerHTML = highlightedText;
+          div.appendChild(levelsP);
+         div.appendChild(document.createElement("hr"));
+
+
+
          const analysisP = document.createElement("p");
          const analysisSpan = document.createElement("span");
          analysisSpan.style.color = overallFatigue[fatigueAssessment[2]].color;

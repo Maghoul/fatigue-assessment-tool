@@ -11,14 +11,14 @@
          --secondary-color: #2ecc71;
          --font-family: 'Arial', sans-serif;
          --main-bg-color: #003052;
-         --complementary-color: #676c73;
+         --complementary-color: #0d0d2f;
          --modal-bg: #E6E7E8;
          --modal-warning: #a10a0a;
          --vibrant-green: #2ecc71;
          --yellow-green: #9acd32;
          --yellow: #f1c40f;
          --orange: #e67e22;
-         --red: #db220deb;
+         --red: #db220d;
      }
 
      /* Global Styles */
@@ -50,6 +50,7 @@
          border-radius: 5px;
          margin-bottom: 20px;
          text-align: left;
+         border: 1px solid var(--primary-color);
      }
 
      .info .center {
@@ -76,6 +77,7 @@
          display: flex;
          flex-direction: column;
          width: 100%;
+         border: 1px solid var(--primary-color);
      }
 
      .form-row {
@@ -86,6 +88,7 @@
          border: 1px solid lightblue;
          padding: 5px;
          border-radius: 5px;
+         background-color: var(--complementary-color);
      }
 
      .form-row:first-child {
@@ -150,6 +153,7 @@
          padding: 10px;
          border-radius: 5px;
          margin-top: 20px;
+         border: 1px solid var(--primary-color);
      }
 
      .final-results {
@@ -169,6 +173,7 @@
          border-radius: 5px;
          margin-top: 20px;
          font-size: 0.8rem;
+         border: 1px solid var(--primary-color);
      }
 
      h3 {
@@ -177,7 +182,7 @@
 
      hr {
          border: 2px solid var(--primary-color);
-         margin: 20px 0;
+         margin: 10px 0;
      }
 
      option {
