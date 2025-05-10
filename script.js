@@ -204,6 +204,7 @@
          const fatigueRiskIndex = calculateFatigue(hoursAwakeValue, hours48Value, hours24Value);
          const fatigueAssessment = assessFatigue(fatigueRiskIndex, kssRatingValue);
          document.querySelector(".info").classList.add("hidden");
+         document.querySelector(".reset-btn").classList.add("hidden");
          fatigueForm.classList.add("hidden");
          const strFRI = Math.round(fatigueRiskIndex);
 
@@ -288,6 +289,7 @@
          resetBtn.addEventListener("click", () => {
              document.querySelector(".info").classList.remove("hidden");
              fatigueForm.classList.remove("hidden");
+             document.querySelector(".reset-btn").classList.remove("hidden");
              const formResults = document.querySelector(".form-results");
              if (formResults) formResults.remove();
              if (result) result.innerHTML = "";
@@ -336,15 +338,10 @@
 
     fatigueForm.addEventListener("reset", (e) => {
       e.preventDefault(); // Prevent form submission
-      document.querySelector(".info").classList.remove("hidden"); // show the info section
-      //document.querySelector(".reset-btn").classList.add("hidden"); // hide the reset button
-      const formResults = document.querySelector(".form-results");
-      if (formResults) formResults.remove();
-      result.innerText = ""; // Clear the result text
       kssRating.value = 6; // Reset input value
       colorKSS(kssRating.value); // Reset color
       hoursAwake.value = 16; // Reset input value
-      hoursAwake.style.backgroundColor = "var(--primary-color)"
+      hoursAwake.style.backgroundColor = "var(--primary-color)";
       hours48.value = 15; // Reset input value
       hours24.value = 7; // Reset input value
 });
