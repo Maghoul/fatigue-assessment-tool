@@ -176,6 +176,10 @@
          border: 1px solid var(--primary-color);
      }
 
+     .image-link {
+        padding-left: 20px;
+     }
+
      h3 {
         font-size: 1.2rem;
      }

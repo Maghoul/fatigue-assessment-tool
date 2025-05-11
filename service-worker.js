@@ -4,9 +4,11 @@ const CACHE_NAME = 'fatigue-tool-cache-v1';
        './index.html',
        './styles.css',
        './script.js',
+       './resources.js',
        './offline.html',
        './images/icon-192.png',
-       './images/icon-512.png'
+       './images/icon-512.png',
+       './images/faa_fri_chart.png',
      ];
 
      self.addEventListener('install', event => {

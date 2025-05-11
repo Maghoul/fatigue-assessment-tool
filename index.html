@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fatigue Assessment</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js" defer></script>
+        <script type ="module" src="script.js" defer></script>
         <link rel="manifest" href="./manifest.json">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
@@ -19,8 +19,9 @@
         <div class="container">
             <h1>Fatigue Assessment</h1> 
             <div class="info"><p>This tool combines the Karolinska Sleepiness Scale (KSS) and a Fatigue Risk Index (FRI) calculator to aid in fatigue assessment.</p>
-            <p class="emphasis"><strong>Note:</strong> This product is <strong>NEITHER</strong> produced <strong>NOR</strong> endorsed by the Fatigue Risk Management Committee (FRMC).</p>
-            <p class="emphasis"><strong>Note:</strong> This is an educational resource. Only the individual pilot can determine their fatigue level.</p>
+            
+            <p class="emphasis"><strong>Note:</strong> This is an educational resource. Only you can determine your fatigue level.
+              The Fatigue Risk Management Committee (FRMC) neither produced nor endorces this product.</p>
             <p class="center">Fill out the form below to get your fatigue score.</p>
             </div>    
             <form id="fatigue-form">
@@ -56,6 +57,7 @@
                 </div>
             </form>
             <div id="result"></div>
+            <div id="resources"></div>
             <div class="footer">
                 <p>© 2025 Fatigue Assessment Tool</p>
                 <p>Developed by Rick G.</p> 

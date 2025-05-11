@@ -1,33 +1,11 @@
+     import { createResourcesDiv, overallFatigue, ratingFRI, ratingKSS } from './resources.js';
      const kssRating = document.getElementById("kss-rating");
      const hours24 = document.getElementById("24-hr-sleep");
      const hours48 = document.getElementById("48-hr-sleep");
      const hoursAwake = document.getElementById("hours-awake");
      const fatigueForm = document.getElementById("fatigue-form");
      const result = document.getElementById("result");
-     const schedURL = "https://scheduling.fdx.alpa.org/fatigue";
-     const alcoholURL = "https://www.cdc.gov/niosh/work-hour-training-for-nurses/longhours/mod3/08.html";
-     const kssURL = "https://skybrary.aero/articles/karolinska-sleepiness-scale-kss";
-     const friURL = "https://www.faa.gov/about/initiatives/maintenance_hf/fatigue/multimedia";
-
-     const overallFatigue = {
-         0: { condition: 'No Fatigue', strategy: 'continue monitoring for fatigue', color: 'var(--vibrant-green)' },
-         1: { condition: 'Mild Fatigue', strategy: 'try to nap or consider strategic caffeine usage', color: 'var(--yellow-green)' },
-         2: { condition: 'Moderate Fatigue', strategy: 'advise the other pilot and try to nap or consider strategic caffeine usage', color: 'var(--yellow)' },
-         3: { condition: 'Severe Fatigue', strategy: 'get a nap and reassess before flying', color: 'var(--orange)' },
-         4: { condition: 'Extreme Fatigue', strategy: 'follow ALPA fatigue assessment', color: 'var(--red)' }
-     };
-
-     const ratingFRI = {
-         1: { strategy: 'Keep an eye on yourself', color: 'var(--vibrant-green)' },
-         2: { strategy: 'Have someone keep an eye on you', color: 'var(--yellow)' },
-         3: { strategy: 'Go to bed', color: 'var(--red)' },
-     };
-
-     const ratingKSS = {
-         1: { strategy: 'Should be alert for duty', color: 'var(--vibrant-green)' },
-         2: { strategy: 'Self-monitor for fatigue, alert other pilot', color: 'var(--yellow)' },
-         3: { strategy: 'Go to bed', color: 'var(--red)' },
-     };
+     const resources = document.getElementById("resources");
 
      const colorKSS = (num) => {
         kssRating.style.color = "black";
@@ -310,45 +288,17 @@
              const formResults = document.querySelector(".form-results");
              if (formResults) formResults.remove();
              if (result) result.innerHTML = "";
-             
-            // For now retain previous values
-            //kssRating.style.backgroundColor = "";
-            //  kssRating.value = 5;
-            //  hoursAwake.value = 16;
-            //  hoursAwake.style.backgroundColor = "var(--primary-color)"
-            //  hours48.value = 15;
-            //  hours24.value = 7;
          });
          buttonContainer.appendChild(resetBtn);
          div.appendChild(buttonContainer);
          
          result.appendChild(div);
 
-         const resourcesDiv = document.createElement("div");
-         resourcesDiv.classList.add("resources");
-         const title = document.createElement("h3");
-         title.innerText = "Resources";
-         resourcesDiv.appendChild(title);
-         const alpaLink = document.createElement("a");
-         alpaLink.href = schedURL;
-         alpaLink.target = "_blank";
-         alpaLink.innerText = "ALPA Scheduling Committee (Fatigue)";
-         resourcesDiv.appendChild(alpaLink);
-         const friLink = document.createElement("a");
-         friLink.href = friURL;
-         friLink.target = "_blank";
-         friLink.innerText = "FAA Fatigue Risk Index";
-         resourcesDiv.appendChild(friLink);
-         const alcoholLink = document.createElement("a");
-         alcoholLink.href = alcoholURL;
-         alcoholLink.target = "_blank";
-         alcoholLink.innerText = "CDC: BAC vs Fatigue";
-         resourcesDiv.appendChild(alcoholLink);
-         const kssLink = document.createElement("a");
-         kssLink.href = kssURL;
-         kssLink.target = "_blank";
-         kssLink.innerText = "Karolinska Sleepiness Scale";
-         resourcesDiv.appendChild(kssLink);
+         resources.innerHTML = '';
+         const resourcesDiv = createResourcesDiv();
+         resources.appendChild(resourcesDiv);
+
+                
 
          result.appendChild(resourcesDiv);
      });
